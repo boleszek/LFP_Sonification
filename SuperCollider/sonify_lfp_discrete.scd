@@ -3,10 +3,10 @@ s.boot;
 //-------- read discrete LFP timepoints ---------//
 
 x = CSVFileReader.readInterpret(
-"/Users/brainbow/Documents/LFP sonification/data_files/theta_filt_5s_binned_20Hz_corrected.txt"
+"/Users/brainbow/Documents/LFP_Sonification/data_files/theta_filt_5s_binned_20Hz_corrected.txt"
 ).postcs;
 y = CSVFileReader.readInterpret(
-"/Users/brainbow/Documents/LFP sonification/data_files/gamma_env_5s_binned_20Hz_corrected.txt"
+"/Users/brainbow/Documents/LFP_Sonification/data_files/gamma_env_5s_binned_20Hz_corrected.txt"
 ).postcs;
 
 //take a look at the signal
@@ -237,7 +237,7 @@ Pdef(\hat,
 
 
 
-// save recording
+// save recording (saves to /Users/brainbow/Music/SuperCollider Recordings/)
 
 (
 Pdef(\kick,

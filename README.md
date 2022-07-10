@@ -12,11 +12,13 @@ The [olfactory bulb](https://en.wikipedia.org/wiki/Olfactory_bulb) (OB) is the p
 Durring sniffing, gamma oscillations tend to occur in bursts on each inhalation/exhalation cycle. When an odor is present the gamma rythms may be enahnced, shifted in freuqncy, or overtaken by the beta ryhthm.
 
 # Sonification task
-[Supercolider](https://supercollider.github.io/) is used to sonify the **amplitude peaks** of the theta and gamma rhythms. The current implemtation assigns a bass drum to the theta-filtered LFP and a hi-hat to the gamma-filtered LFP, resulting in a drum beat tracking the relative timing of theta and gamma peaks. By default, ScreenFlow saves audio to `/Users/username/Music/SuperCollider Recordings/` on Mac. An example audio file is provided in `SuperCollider/example_audio/kick_hat_correct_binning_13s.aiff`.
+The current working strategy is to sonify the **amplitude peaks** of the theta and gamma rhythms, which are represented by discrete time points. The current implemtation assigns a bass drum to the theta-filtered LFP and a hi-hat to the gamma-filtered LFP, resulting in a drum beat tracking the relative timing of theta and gamma peaks. This is implemented in `/SuperCollider/sonify_lfp_discrete.scd/`. I attempted to sonify continuous data in `/SuperCollider/sonify_lfp_continuous.scd` to try to acheive swells in pitch/volume/ that follow the breathing pattern as well as faster gamma oscillations, but couldn't make it work.
+
+[Supercolider](https://supercollider.github.io/) is used to perform the sonification. By default, SuperCollider saves audio to `/Users/username/Music/SuperCollider Recordings/` on Mac. An example audio file is provided in `SuperCollider/example_audio/kick_hat_correct_binning_13s.aiff`.
 
 Python is used to process the raw data into a format digestible by Supercollider. See `LFP_sonification_preprocessing.ipynb` for examples of how to get the peaks of the theta and gamma filtered LFP signal.
 
-[Screenflow](https://www.telestream.net/screenflow/overview.htm) is used to sync video and sound to show the drum beat playing as the LFP signal sweeps across the screen.
+[Screenflow](https://www.telestream.net/screenflow/overview.htm) is used to manually sync video and sound to show the drum beat playing as the LFP signal sweeps across the screen.
 
 Example vids of the synced sonification and video are in `synced_videos` folder.
 
@@ -44,10 +46,11 @@ In ScreenFlow:
 * load video (`.mp4`) and sound (`.aiff`) files
 * make any adjustments necessary to sync the sounds to the video, then write to `.mp4` file
 
-Alternatively, you could use [FFmpeg](https://ffmpeg.org/) instead of ScreenFlow to add the sound to the video. This has advantage of being more automated, but disadvantage of not being able to do manual tweaks if needed. Example of how to use FFmpeg is below
+Alternatively, you could use [FFmpeg](https://ffmpeg.org/) instead of ScreenFlow to add the sound to the video in a single command. This has advantage of being more automated, but disadvantage of not being able to do manual tweaks if needed. Example of how to use FFmpeg is below
 ```
 ffmpeg -i '/LFP_Sonification/gamma_theta_peaks_40fps.mp4' -i '/Users/username/Music/SuperCollider Recordings/kick_hat_correct_binning_13s.aiff' -c:v copy -c:a aac /LFP_Sonification/synced_videos/sonified_lfp.mp4
 ```
+
 
 # Data Source
 Data for this project were recorded from rats by graduate students in the [Kay lab](https://kaylab.uchicago.edu/) at the University of Chicago.

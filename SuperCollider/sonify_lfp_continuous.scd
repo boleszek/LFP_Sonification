@@ -54,12 +54,12 @@ Env.new(levels: [0, 1, 0.9, 0], times: [0.1, 0.5, 1], curve: [-5, 0, -5]).plot;
 //-------- read continuous LFP data ---------//
 //read csv file
 //x = CSVFileReader.read(
-//"/Users/brainbow/Documents/LFP sonification/gamma_env_2s.txt"
+//"/Users/brainbow/Documents/LFP_Sonification/gamma_env_2s.txt"
 //).postcs;
 
 // must use readInterpret (not read) in order to to interpret as numeric
 x = CSVFileReader.readInterpret(
-"/Users/brainbow/Documents/LFP sonification/gamma_env_5s_100hz.txt"
+"/Users/brainbow/Documents/LFP_Sonification/gamma_env_5s_100hz.txt"
 ).postcs;
 
 //take a look at the signal
@@ -137,7 +137,7 @@ x.at(0).at([0,1,2,3])
 //-------- read discrete LFP timepoints ---------//
 
 x = CSVFileReader.readInterpret(
-"/Users/brainbow/Documents/LFP sonification/theta_filt_5s_peak_times.txt"
+"/Users/brainbow/Documents/LFP_Sonification/theta_filt_5s_peak_times.txt"
 ).postcs;
 
 //take a look at the signal
