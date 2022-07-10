@@ -2,7 +2,7 @@
 Sonification of olfactory bulb (OB) local field potential (LFP) data
 
 # Science Background
-The [local field potential](http://www.scholarpedia.org/article/Local_field_potential) (LFP) is the electric field created by the coordinated activity of 100s or 1000s of indivudual neurons. When this collective activity moves up and down in unison, the LFP
+The [local field potential](http://www.scholarpedia.org/article/Local_field_potential) (LFP) is the electric field created by the coordinated activity of 1000s of indivudual neurons. When this collective activity moves up and down in unison, the LFP
 
 The [olfactory bulb](https://en.wikipedia.org/wiki/Olfactory_bulb) (OB) is the part of the brain that processes the sense of smell. The OB produces highly coordinated neural activity, also called "oscillations", between exitatory mitral cells and inhobitory granule cells. When an odorant is detected by olfactory receptor neurons in the nose, these oscillations coordinate and adjust the incoming odor signal as it is passed to downstream brain areas. In rodent brains, there are generally 3 frequency bands of LFP oscillations which correspond to different things.
 * Theta (1 - 10 Hz) : corresponds to breathing rhythm
@@ -12,7 +12,7 @@ The [olfactory bulb](https://en.wikipedia.org/wiki/Olfactory_bulb) (OB) is the p
 Durring sniffing, gamma oscillations tend to occur in bursts on each inhalation/exhalation cycle. When an odor is present the gamma rythms may be enahnced, shifted in freuqncy, or overtaken by the beta ryhthm.
 
 # Sonification task
-The current working strategy is to sonify the **amplitude peaks** of the theta and gamma rhythms, which are represented by discrete time points. The current implemtation assigns a bass drum to the theta-filtered LFP and a hi-hat to the gamma-filtered LFP, resulting in a drum beat tracking the relative timing of theta and gamma peaks. This is implemented in `/SuperCollider/sonify_lfp_discrete.scd/`. I attempted to sonify continuous data in `/SuperCollider/sonify_lfp_continuous.scd` to try to acheive swells in pitch/volume/ that follow the breathing pattern as well as faster gamma oscillations, but couldn't make it work.
+The current working strategy is to sonify the **amplitude peaks** of the theta and gamma rhythms, which are represented by discrete time points. The current implemtation assigns a bass drum to the theta-filtered LFP and a hi-hat to the gamma-filtered LFP, resulting in a drum beat tracking the relative timing of theta and gamma peaks. This is implemented in `/SuperCollider/sonify_lfp_discrete.scd/`. I also attempted to sonify continuous data in `/SuperCollider/sonify_lfp_continuous.scd` to try to acheive swells in pitch/volume/phase that follow the breathing rhythm as well as the faster gamma oscillations, but couldn't make it work.
 
 [Supercolider](https://supercollider.github.io/) is used to perform the sonification. By default, SuperCollider saves audio to `/Users/username/Music/SuperCollider Recordings/` on Mac. An example audio file is provided in `SuperCollider/example_audio/kick_hat_correct_binning_13s.aiff`.
 
