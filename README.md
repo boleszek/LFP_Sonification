@@ -12,7 +12,7 @@ The [olfactory bulb](https://en.wikipedia.org/wiki/Olfactory_bulb) (OB) is the p
 Durring sniffing, gamma oscillations tend to occur in bursts on each inhalation/exhalation cycle. When an odor is present the gamma rythms may be enahnced, shifted in freuqncy, or overtaken by the beta ryhthm.
 
 # Sonification task
-[Supercolider](https://supercollider.github.io/) is used to sonify the **amplitude peaks** of the theta and gamma rhythms. The current implemtation assigns a bass drum to the theta-filtered LFP and a hi-hat to the gamma-filtered LFP, resulting in a drum beat tracking the relative timing of theta and gamma peaks.
+[Supercolider](https://supercollider.github.io/) is used to sonify the **amplitude peaks** of the theta and gamma rhythms. The current implemtation assigns a bass drum to the theta-filtered LFP and a hi-hat to the gamma-filtered LFP, resulting in a drum beat tracking the relative timing of theta and gamma peaks. By default, ScreenFlow saves audio to `/Users/username/Music/SuperCollider Recordings/` on Mac. An example audio file is provided in `SuperCollider/example_audio/kick_hat_correct_binning_13s.aiff`.
 
 Python is used to process the raw data into a format digestible by Supercollider. See `LFP_sonification_preprocessing.ipynb` for examples of how to get the peaks of the theta and gamma filtered LFP signal.
 
@@ -23,9 +23,9 @@ Example vids of the synced sonification and video are in `synced_videos` folder.
 ## Data processing workflow
 **Simplified workflow**
 ```
-python: data processing and video creation --> .txt data files, .mp4 video files
-Supercollider: sonification of processed data --> .aiff sound files
-Screenflow: sync sonification and video together --> .mp4 video files
+python : data processing and video creation --> .txt data files, .mp4 video files
+Supercollider : sonification of processed data --> .aiff sound files
+Screenflow : sync sonification and video together --> .mp4 video files
 ````
 
 **More detailed workflow**
@@ -40,10 +40,14 @@ In Supercollider:
 * read peak times `.txt` files
 * sonify and write to `.aiff` files
 
-In Screenflow:
+In ScreenFlow:
 * load video (`.mp4`) and sound (`.aiff`) files
 * make any adjustments necessary to sync the sounds to the video, then write to `.mp4` file
 
+Alternatively, you could use [FFmpeg](https://ffmpeg.org/) instead of ScreenFlow to add the sound to the video. This has advantage of being more automated, but disadvantage of not being able to do manual tweaks if needed. Example of how to use FFmpeg is below
+```
+ffmpeg -i '/LFP_Sonification/gamma_theta_peaks_40fps.mp4' -i '/Users/username/Music/SuperCollider Recordings/kick_hat_correct_binning_13s.aiff' -c:v copy -c:a aac /LFP_Sonification/synced_videos/sonified_lfp.mp4
+```
 
 # Data Source
 Data for this project were recorded from rats by graduate students in the [Kay lab](https://kaylab.uchicago.edu/) at the University of Chicago.
