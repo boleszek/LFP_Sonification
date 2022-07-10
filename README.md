@@ -14,11 +14,11 @@ Durring sniffing, gamma oscillations tend to occur in bursts on each inhalation/
 # Sonification task
 The current working strategy is to sonify the **amplitude peaks** of the theta and gamma rhythms, which are represented by discrete time points. The current implemtation assigns a bass drum to the theta-filtered LFP and a hi-hat to the gamma-filtered LFP, resulting in a drum beat tracking the relative timing of theta and gamma peaks. This is implemented in `/SuperCollider/sonify_lfp_discrete.scd/`. I also attempted to sonify continuous data in `/SuperCollider/sonify_lfp_continuous.scd` to try to acheive swells in pitch/volume/phase that follow the breathing rhythm as well as the faster gamma oscillations, but couldn't make it work.
 
-[Supercolider](https://supercollider.github.io/) is used to perform the sonification. By default, SuperCollider saves audio to `/Users/username/Music/SuperCollider Recordings/` on Mac. An example audio file is provided in `SuperCollider/example_audio/kick_hat_correct_binning_13s.aiff`.
+[SuperCollider](https://supercollider.github.io/) is used to perform the sonification. By default, SuperCollider saves audio to `/Users/username/Music/SuperCollider Recordings/` on Mac. An example audio file is provided in `SuperCollider/example_audio/kick_hat_correct_binning_13s.aiff`.
 
 Python is used to process the raw data into a format digestible by Supercollider. See `LFP_sonification_preprocessing.ipynb` for examples of how to get the peaks of the theta and gamma filtered LFP signal.
 
-[Screenflow](https://www.telestream.net/screenflow/overview.htm) is used to manually sync video and sound to show the drum beat playing as the LFP signal sweeps across the screen.
+[ScreenFlow 2](https://www.telestream.net/screenflow/overview.htm) is used to manually sync video and sound to show the drum beat playing as the LFP signal sweeps across the screen.
 
 Example vids of the synced sonification and video are in `synced_videos` folder.
 
@@ -38,7 +38,7 @@ In python:
 * create animation showing gamma and theta over time and write to `.mp4`
 * write peaks times of filtered LFP envelopes to `.txt` files (to be later read by Supercollider)
 
-In Supercollider:
+In SuperCollider:
 * read peak times `.txt` files
 * sonify and write to `.aiff` files
 
