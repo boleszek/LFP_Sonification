@@ -74,6 +74,13 @@ def discretize_gamma_theta_peaks(signal, Fs=2000, Fds=100, Fbn=20):
     
     
     out_dict = {
+        'continuous':[
+            'tvec':tvec,
+            'raw_signal':signal,
+            'gamma_signal':signal_gamma,
+            'theta_signal':signal_theta
+        ],
+        'discretized':[
             'tvec_ds':tvec_ds,
             'gamma_env_ds':gamma_env_ds,
             'gamma_env_peak_times':gamma_env_peak_times,
@@ -86,5 +93,6 @@ def discretize_gamma_theta_peaks(signal, Fs=2000, Fds=100, Fbn=20):
             'binned_gamma_sonify':binned_gamma_sonify,
             'binned_theta_sonify':binned_theta_sonify,
             'binned_theta':binned_theta
+        ]
                 }
     return out_dict
