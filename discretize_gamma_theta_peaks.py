@@ -66,33 +66,34 @@ def discretize_gamma_theta_peaks(signal, Fs=2000, Fds=100, Fbn=20):
     masked_theta_filt = np.multiply(theta_filt_ds,binned_theta)
     masked_theta_filt = np.where(masked_theta_filt==0,np.nan,masked_theta_filt) # set 0s to nan
     
-    # # Bin gamma env & theta filt into rasters (used for sonification)
-    #binned_gamma_sonify = np.histogram(gamma_env_peak_times,int(dur*Fbn))[0] # using nbins
-    #binned_theta_sonify = np.histogram(theta_filt_peak_times,int(dur*Fbn))[0] # using nbins
-    binned_gamma_sonify = np.histogram(gamma_env_peak_times,np.arange(0,dur+(1/Fbn),1/Fbn))[0] # using edges
-    binned_theta_sonify = np.histogram(theta_filt_peak_times,np.arange(0,dur+(1/Fbn),1/Fbn))[0] # using edges
+    # # Bin gamma env & theta filt into rasters (useful for simple rhythmic sonification)
+    #binned_gamma_Fbn = np.histogram(gamma_env_peak_times,int(dur*Fbn))[0] # using nbins
+    #binned_theta_Fbn = np.histogram(theta_filt_peak_times,int(dur*Fbn))[0] # using nbins
+    binned_gamma_Fbn = np.histogram(gamma_env_peak_times,np.arange(0,dur+(1/Fbn),1/Fbn))[0] # using edges
+    binned_theta_Fbn = np.histogram(theta_filt_peak_times,np.arange(0,dur+(1/Fbn),1/Fbn))[0] # using edges
     
     
     out_dict = {
-        'continuous':[
+        'continuous':{
             'tvec':tvec,
             'raw_signal':signal,
             'gamma_signal':signal_gamma,
-            'theta_signal':signal_theta
-        ],
-        'discretized':[
+            'theta_signal':signal_theta,
             'tvec_ds':tvec_ds,
             'gamma_env_ds':gamma_env_ds,
-            'gamma_env_peak_times':gamma_env_peak_times,
-            'gamma_env_peak_hights':gamma_env_peak_hights,
             'theta_filt_ds':theta_filt_ds,
-            'theta_filt_peak_times':theta_filt_peak_times,
-            'theta_filt_peak_hights':theta_filt_peak_hights,
             'masked_gamma_env':masked_gamma_env,
             'masked_theta_filt':masked_theta_filt,
-            'binned_gamma_sonify':binned_gamma_sonify,
-            'binned_theta_sonify':binned_theta_sonify,
+        },
+        'discretized':{
+            'gamma_env_peak_times':gamma_env_peak_times,
+            'gamma_env_peak_values':gamma_env_peak_hights,
+            'theta_filt_peak_times':theta_filt_peak_times,
+            'theta_filt_peak_values':theta_filt_peak_hights,
+            'binned_gamma_Fbn':binned_gamma_Fbn,
+            'binned_theta_Fbn':binned_theta_Fbn,
+            'binned_gamma':binned_gamma,
             'binned_theta':binned_theta
-        ]
+        }
                 }
     return out_dict
